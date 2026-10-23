@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tamil Voice Test</title>
+</head>
+<body>
+  <h2>Tamil Voice Test</h2>
+
+  <button onclick="showVoices()">Check Available Voices</button>
+  <button onclick="speakTamil()">Speak Tamil</button>
+
+  <pre id="result"></pre>
+
+  <script>
+    function showVoices() {
+      const voices = speechSynthesis.getVoices();
+
+      document.getElementById("result").textContent =
+        voices.length === 0
+          ? "No voices detected. Please wait and try again."
+          : voices.map(v =>
+              `${v.name} | ${v.lang}`
+            ).join("\n");
+    }
+
+    speechSynthesis.onvoiceschanged = showVoices;
+
+    function speakTamil() {
+      const voices = speechSynthesis.getVoices();
+
+      const tamilVoice = voices.find(v =>
+        v.lang.toLowerCase().startsWith("ta")
+      );
+
+      const message = new SpeechSynthesisUtterance(
+        "வணக்கம்! உங்கள் ஸ்மார்ட் ஆப்ஸ் AI உதவியாளர் தயார்."
+      );
+
+      message.lang = "ta-IN";
+
+      if (tamilVoice) {
+        message.voice = tamilVoice;
+      }
+
+      speechSynthesis.speak(message);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Python cache
+
+**pycache**/
+*.py[cod]
+
+# Python virtual environment
+
+.venv/
+venv/
+
+# Environment variables and secrets
+
+.env
+.env.*
+
+# Flutter generated files
+
+**/.dart_tool/
+**/build/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+
+# IDE files
+
+.idea/
+.vscode/
